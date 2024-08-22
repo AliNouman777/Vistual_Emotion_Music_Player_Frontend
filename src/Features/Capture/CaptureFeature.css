@@ -1,0 +1,161 @@
+.Capture {
+  display: flex;
+  justify-content: space-around; /* Spacing between dropdown and video */
+  flex-direction: row;
+  align-items: center;
+  height: 90vh;
+  padding: 20px 40px; /* Increased padding for better spacing */
+  overflow: hidden;
+  font-size: large;
+  width: 80vw;
+}
+
+.dropdowns {
+  width: 100%;
+  max-width: 400px; /* Increased max width for larger screens */
+  margin: 0 20px; /* Increased margin for spacing */
+  padding: 30px; /* Increased padding for more whitespace */
+  background-color: #ffffff;
+  border-radius: 10px; /* Larger border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added a subtle box shadow */
+  box-sizing: border-box;
+}
+
+.dropdowns div {
+  margin-bottom: 20px; /* Increased spacing between elements */
+}
+
+label {
+  display: block;
+  margin-bottom: 8px; /* Slightly increased margin for better spacing */
+  color: #333333;
+  font-size: 18px; /* Increased font size */
+  font-weight: bold;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 16px; /* Increased font size */
+  color: #333333;
+  margin-bottom: 12px; /* Spacing after the select element */
+}
+
+select:focus {
+  outline: none;
+  border-color: #314962;
+}
+
+.webcamcon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw; /* Increased width for larger video display */
+  max-width: 1200px; /* Increased max width for larger screens */
+  margin-top: 20px;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  border-radius: 12px; /* Increased border radius */
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  z-index: 2;
+}
+
+.divbtn {
+  margin-top: 30px; /* Increased margin for better spacing */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cbtn {
+  width: 60%;
+  max-width: 350px; /* Increased max width for larger buttons */
+  text-align: center;
+  padding: 0.8rem; /* Increased padding */
+  background: linear-gradient(
+      45deg,
+      rgb(87, 87, 227),
+      rgb(184, 90, 90),
+      rgb(239, 239, 145)
+  );
+  color: white;
+  font-size: large; /* Increased font size */
+  font-weight: 700;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px; /* Increased border radius */
+}
+
+.cbtn:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.05);
+  transition: 0.4s;
+}
+
+.cbtn:active {
+  opacity: 0.8;
+  color: grey;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .Capture {
+      flex-direction: column; /* Stack elements on smaller screens */
+      justify-content: center;
+      padding: 20px;
+  }
+
+  .webcamcon {
+      width: 100%;
+      max-width: 500px;
+      margin-top: 20px;
+  }
+
+  .divbtn {
+      margin-top: 20px;
+  }
+
+  .cbtn {
+      width: 80%; /* Increase button width on smaller screens */
+      max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .label {
+      font-size: 16px; /* Adjusted font size for smaller screens */
+  }
+
+  .cbtn {
+      width: 90%;
+      max-width: 200px;
+      font-size: medium; /* Adjusted font size */
+  }
+
+  .dropdowns {
+      padding: 20px; /* Adjusted padding */
+  }
+
+  .video, .canvas {
+      max-width: 100%;
+      height: auto;
+  }
+}

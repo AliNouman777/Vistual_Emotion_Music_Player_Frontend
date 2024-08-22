@@ -1,0 +1,55 @@
+.wrapperEight {
+  font-size: 6rem; /* Adjust font size if it's too large */
+  background-color: #ffffff;
+  overflow: hidden; /* Change to visible if cutting off content */
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.smoke {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap; /* Add this to prevent wrapping */
+}
+
+.spanSmoke {
+  display: inline-flex;
+  animation: smoke 7s ease-in-out forwards;
+  background: linear-gradient(
+    45deg,
+    rgb(78, 78, 225),
+    rgb(184, 90, 90),
+    rgb(239, 239, 145)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 1;
+}
+
+.emoji {
+  font-size: 1em;
+  animation: smoke 7s ease-in-out forwards;
+}
+
+@keyframes smoke {
+  0% {
+    transform: translate3d(0, 0, 0);
+    text-shadow: 0 0 0 rgb(78, 78, 225);
+    opacity: 1;
+  }
+  60% {
+    text-shadow: 0 0 40px #ff0000, 0 0 10px rgb(184, 90, 90);
+  }
+  100% {
+    transform: translate3d(0, -2rem, 0) skewX(50deg);
+    text-shadow: 0 0 20px rgb(239, 239, 145), 0 0 50px #ff0000; 
+    opacity: 0;
+  }
+}

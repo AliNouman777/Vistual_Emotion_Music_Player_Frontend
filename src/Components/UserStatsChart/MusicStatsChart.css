@@ -1,0 +1,49 @@
+/* MusicStatsChart.css */
+
+.music-chart-container {
+    width: 40%;  /* Adjust the width of the chart container */
+    height: auto; /* Let the height adjust automatically */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .total-songs {
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .music-chart {
+    padding: 20px;
+    max-width: 100%;  /* Ensure the chart doesn't overflow */
+  }
+  
+  .loading-text {
+    text-align: center;
+    font-size: 1.2em;
+    color: #888;
+    margin-top: 20px;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .music-chart-container {
+      width: 80%;  /* Make the container wider on smaller screens */
+      padding: 10px;
+    }
+  
+    .total-songs {
+      font-size: 1.2em;
+    }
+  
+    .loading-text {
+      font-size: 1em;
+    }
+  }
+  

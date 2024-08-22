@@ -1,0 +1,44 @@
+.login{
+    width: 41px;
+    height: 41px;
+    cursor: pointer;
+}
+.con{
+    width: fit-content;
+    height: 100vh;
+    display: flex;
+}
+
+.hnavbar{
+    background: linear-gradient(
+        45deg,
+        rgb(184, 90, 90),
+        rgb(239, 239, 145),
+        rgb(87, 87, 227)
+        );
+      width: fit-content;
+      padding: 1rem;
+      border-radius: 0px 10px 10px 0px;
+}
+
+.iconcon{
+    display: flex;
+    flex-direction: column;
+    font-size:2rem ;
+    color: white;
+    justify-content: space-evenly;
+}
+
+.Link{
+    color: white;
+    margin: 8px 0px;
+    cursor: pointer;
+}
+
+.Link:hover{
+    transform: scale(1.1);
+    transition-duration: 0.4s;
+}
+.Link:active{
+    color: rgba(90, 90, 156, 0.263);
+}

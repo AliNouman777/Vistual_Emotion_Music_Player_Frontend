@@ -1,0 +1,73 @@
+/* Dropdown container */
+.dropdown {
+    margin: 1.5em 0; /* Increased margin for better spacing */
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Full width for better responsiveness */
+    max-width: 350px; /* Increased max width for larger screens */
+}
+
+/* Style for the select element */
+.dropdown select {
+    font-size: 1.2rem; /* Increased font size */
+    font-weight: 400;
+    display: block;
+    width: 100%;
+    padding: 0.8em 1.4em 0.7em 0.8em; /* Increased padding for better touch experience */
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Slightly larger border radius */
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-repeat: no-repeat, repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover state */
+.dropdown select:hover {
+    border-color: #888; /* Darker border on hover */
+}
+
+/* Focus state */
+.dropdown select:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+    color: #222; 
+    outline: none;
+}
+
+/* Style for the option elements */
+.dropdown select option {
+    padding: 0.5em;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dropdown {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    .dropdown select {
+        font-size: 1rem; /* Adjusted font size for smaller screens */
+        padding: 0.6em 1.2em 0.5em 0.7em; /* Adjusted padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .dropdown select {
+        font-size: 0.9rem; /* Smaller font size for better fit on small screens */
+        padding: 0.5em 1em 0.4em 0.6em; /* Adjusted padding */
+    }
+}

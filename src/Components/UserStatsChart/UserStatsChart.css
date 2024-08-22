@@ -1,0 +1,50 @@
+/* UserStatsChart.css */
+
+.chart-container {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(
+        45deg,
+        rgb(184, 90, 90),
+        rgb(239, 239, 145),
+        rgb(87, 87, 227)
+        );
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.total-users {
+  text-align: center;
+  font-size: 1.5em;
+  color: #000000;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.user-chart {
+  padding: 20px;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 1.2em;
+  color: #ee4646;
+  margin-top: 20px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .chart-container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .total-users {
+    font-size: 1.2em;
+  }
+
+  .loading-text {
+    font-size: 1em;
+  }
+}

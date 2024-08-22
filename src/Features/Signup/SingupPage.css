@@ -1,0 +1,63 @@
+.rightcon {
+    width: 45vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .signupform {
+    width: 80%;
+    background-color: rgb(248, 254, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.239);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 2, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  .signupform > form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  .login-link{
+    color: black;
+    font-size: medium;
+    width: 212px;
+  }
+  
+  .signupform input {
+    width: 80%;
+    padding: 8px;
+    margin: 8px 0;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.676);
+  }
+  .image{
+    border-radius:50%; 
+  }
+  
+  .signupform button {
+    width: 70%;
+    border: none;
+    background: linear-gradient(
+      45deg,
+      rgb(87, 87, 227),
+      rgb(184, 90, 90),
+      rgb(239, 239, 145)
+    );
+    border-radius: 10px;
+    padding: 8px;
+    margin-top: 1rem;
+    font-size: medium;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+  }
+  

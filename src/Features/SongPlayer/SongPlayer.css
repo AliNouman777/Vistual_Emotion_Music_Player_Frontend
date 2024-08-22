@@ -1,0 +1,60 @@
+.parentcon {
+  height: 100vh;
+  width: 100rw;
+  background: linear-gradient(
+    45deg,
+    rgb(78, 78, 225),
+    rgb(184, 90, 90),
+    rgb(239, 239, 145)
+  );
+}
+
+.videoplayer {
+  display: flex;
+}
+
+.videocon {
+  margin: 5rem;
+  width: 60vw;
+  height: 60vh;
+  box-shadow: -14px 8px 37px 1px rgba(0, 0, 0, 0.65);
+  -webkit-box-shadow: -14px 8px 37px 1px rgba(0, 0, 0, 0.65);
+  -moz-box-shadow: -14px 8px 37px 1px rgba(0, 0, 0, 0.65);
+}
+
+.musicvideo {
+  width: 60vw;
+  height: 60vh;
+}
+
+.textcon {
+  text-align: left;
+}
+
+.circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+}
+
+.rotating-circle {
+  width: 225px;
+  height: 225px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

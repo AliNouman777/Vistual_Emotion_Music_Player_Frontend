@@ -1,0 +1,71 @@
+.about-container {
+    background-color: white; /* White background for the entire page */
+    min-height: 100vh; /* Ensures the background covers the entire viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .about-content {
+    background: linear-gradient(
+      45deg,
+      rgb(122, 57, 57),
+      rgb(211, 211, 87),
+      rgb(39, 39, 245)
+    ); /* Linear gradient background for the container */
+    padding: 40px;
+    max-width: 1200px;
+    margin: 20px;
+    border-radius: 15px; /* Rounded corners for the container */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Box shadow for the container */
+    text-align: center;
+    color: white; /* Ensures text is visible on the gradient background */
+  }
+  
+  .about-section,
+  .team-section {
+    margin-bottom: 50px;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: white; /* Ensures paragraph text is visible on the gradient background */
+  }
+  
+  .team-members {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .team-member {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .team-member img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .team-member h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    color: white; /* Ensures team member names are visible on the gradient background */
+  }
+  
+  .team-member p {
+    font-size: 1em;
+    color: white; 
+    font-style: italic;/* Ensures team member roles are visible on the gradient background */
+  }
+  
