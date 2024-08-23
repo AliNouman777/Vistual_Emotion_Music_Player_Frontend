@@ -21,7 +21,7 @@ const UserStatsChart = () => {
       return;
     }
 
-    axios.get('http://127.0.0.1:5000/user/stats', {
+    axios.get('https://face-detection-music-player-backend.onrender.com/user/stats', {
       headers: {
         Authorization: `Bearer ${token}`
       }

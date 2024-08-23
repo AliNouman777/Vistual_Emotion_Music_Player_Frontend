@@ -29,7 +29,7 @@ const UserList = () => {
 
       try {
         setLoadingUsers(true);
-        const response = await axios.get("http://127.0.0.1:5000/user/all", {
+        const response = await axios.get("https://face-detection-music-player-backend.onrender.com/user/all", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -57,7 +57,7 @@ const UserList = () => {
 
     try {
       setDeletingUserIds(prev => [...prev, userId]);
-      await axios.delete(`http://127.0.0.1:5000/user/delete/${userId}`, {
+      await axios.delete(`https://face-detection-music-player-backend.onrender.com/user/delete/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

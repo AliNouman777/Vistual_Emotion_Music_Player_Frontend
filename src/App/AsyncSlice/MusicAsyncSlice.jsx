@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const UPLOAD_ENDPOINT = 'http://localhost:5000/music'; 
+const UPLOAD_ENDPOINT = 'https://face-detection-music-player-backend.onrender.com/music'; 
 
 function gettoken() {
   const tokenString = localStorage.getItem("token");

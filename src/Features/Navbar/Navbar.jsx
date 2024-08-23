@@ -43,7 +43,6 @@ const Navbar = () => {
                 <MdDashboard />
               </Link>
             )}
-  {console.log(localStorage.getItem("token"))}
             {localStorage.getItem("token") ? (
               
               <Link to={"/logout"} className="Link">

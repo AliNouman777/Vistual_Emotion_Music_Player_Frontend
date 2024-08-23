@@ -5,7 +5,7 @@ export const UserLogin = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
-        "http://127.0.0.1:5000/user/login",
+        "https://face-detection-music-player-backend.onrender.com/user/login",
         {
           email: user.email,
           password: user.password,
@@ -53,7 +53,7 @@ export const UserSignup = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
-        "http://127.0.0.1:5000/user/register",
+        "https://face-detection-music-player-backend.onrender.com/user/register",
         user,
         {
           headers: {
@@ -114,7 +114,7 @@ export const UserProfile = createAsyncThunk(
     }
 
     try {
-      const { data } = await axios.get("http://127.0.0.1:5000/user/profile", {
+      const { data } = await axios.get("https://face-detection-music-player-backend.onrender.com/user/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -150,7 +150,7 @@ export const UserLogout = createAsyncThunk(
       }
 
       const { data } = await axios.post(
-        "http://127.0.0.1:5000/user/logout",
+        "https://face-detection-music-player-backend.onrender.com/user/logout",
         {},
         {
           headers: {
