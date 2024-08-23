@@ -75,7 +75,7 @@ const LoginFeature = () => {
       >
         <div className="loginform">
           <h2>Login</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               type="email"
               name="email"
@@ -98,15 +98,18 @@ const LoginFeature = () => {
               onChange={(e) => handleChange(e)}
             />
             <button
-              onClick={handleSubmit}
               type="submit"
               className="loginbutton"
               disabled={loading}
+              style={{
+                cursor: loading ? "not-allowed" : "pointer",
+                backgroundColor: loading ? "#ccc" : "#007bff",
+              }}
             >
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
             <p className="login-link">
-              Don't have an account: <Link to={"/signup"}>Signup</Link>
+              Don't have an account? <Link to={"/signup"}>Signup</Link>
             </p>
           </form>
         </div>
