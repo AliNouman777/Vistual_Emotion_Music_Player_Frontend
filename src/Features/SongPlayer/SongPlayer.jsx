@@ -9,8 +9,7 @@ const SongPlayer = () => {
 
   return (
     <>
-      {music ? 
-      (
+      {music ? (
         <div>
           <div className="parentcon">
             <div className="videoplayer">
@@ -46,7 +45,10 @@ const SongPlayer = () => {
           </div>
         </div>
       ) : (
-        <div>Not Music found</div>
+        <>
+          <div>Not Music found</div>
+          <Link to={"/"}>Home</Link>
+        </>
       )}
     </>
   );

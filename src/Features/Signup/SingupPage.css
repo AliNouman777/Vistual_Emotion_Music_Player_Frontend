@@ -61,3 +61,13 @@
     cursor: pointer;
   }
   
+
+  @media (max-width: 480px) {
+    .signupform {
+      width: 150%;
+    }
+
+    .rightcon{
+      width: -webkit-fill-available;
+    }
+  }

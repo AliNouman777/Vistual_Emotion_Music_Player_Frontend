@@ -36,6 +36,7 @@
     .music-chart-container {
       width: 80%;  /* Make the container wider on smaller screens */
       padding: 10px;
+      margin-left: 5rem;
     }
   
     .total-songs {

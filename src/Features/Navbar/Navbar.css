@@ -1,44 +1,121 @@
-.login{
-    width: 41px;
-    height: 41px;
-    cursor: pointer;
-}
-.con{
-    width: fit-content;
-    height: 100vh;
-    display: flex;
-}
-
-.hnavbar{
+/* General Styles for the Navbar */
+.hnavbar {
     background: linear-gradient(
-        45deg,
-        rgb(184, 90, 90),
-        rgb(239, 239, 145),
-        rgb(87, 87, 227)
-        );
-      width: fit-content;
-      padding: 1rem;
-      border-radius: 0px 10px 10px 0px;
-}
-
-.iconcon{
+      45deg,
+      rgb(184, 90, 90),
+      rgb(239, 239, 145),
+      rgb(87, 87, 227)
+    );
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 0px 10px 10px 0px;
+  }
+  
+  .iconcon {
     display: flex;
     flex-direction: column;
-    font-size:2rem ;
+    font-size: 2rem;
     color: white;
     justify-content: space-evenly;
-}
-
-.Link{
+  }
+  
+  .Link {
     color: white;
     margin: 8px 0px;
     cursor: pointer;
-}
-
-.Link:hover{
+  }
+  
+  .Link:hover {
     transform: scale(1.1);
     transition-duration: 0.4s;
-}
-.Link:active{
+  }
+  
+  .Link:active {
     color: rgba(90, 90, 156, 0.263);
-}
+  }
+  
+  /* General Styles */
+  .login {
+    width: 41px;
+    height: 41px;
+    cursor: pointer;
+  }
+  
+  .con {
+    width: fit-content;
+    height: 100vh;
+    display: flex;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .hnavbar {
+      width: fit-content;
+      padding: 1rem;
+      border-radius: 0px 10px 10px 0px;
+    }
+  
+    .iconcon {
+      font-size: 1.8rem;
+    }
+  
+    .Link {
+      margin: 6px 0px;
+    }
+  
+    .login {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hnavbar {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 0px;
+      height: fit-content;
+    }
+    .con{
+        height: 1rem;
+    }
+  
+    .iconcon {
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 1.5rem;
+    }
+  
+    .Link {
+      margin: 0px 8px;
+    }
+  
+    .login {
+      width: 34px;
+      height: 34px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hnavbar {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0px;
+    }
+  
+    .iconcon {
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 1.2rem;
+    }
+  
+    .Link {
+      margin: 0px 5px;
+    }
+  
+    .login {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  

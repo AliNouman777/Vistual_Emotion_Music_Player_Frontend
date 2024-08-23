@@ -141,7 +141,10 @@ const SignupFeature = () => {
               type="submit"
               className="signupbutton"
               disabled={loading} // Disable button when loading
-              style={{ background: loading ? "grey" : "" }}
+              style={{
+                 background: loading ? "grey" : "" ,
+                 cursor: loading? "not-allowed" : "pointer"                 
+              }}
             >
               {loading ? "Signing up..." : "Signup"}
             </button>

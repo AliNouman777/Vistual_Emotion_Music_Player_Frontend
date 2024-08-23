@@ -36,8 +36,10 @@
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .chart-container {
-    width: 95%;
-    padding: 10px;
+    width: 70%;
+    padding: 20px ;
+    margin-left: 5rem;
+    margin-top: 1rem;
   }
 
   .total-users {

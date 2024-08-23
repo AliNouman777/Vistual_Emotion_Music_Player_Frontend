@@ -99,7 +99,7 @@ const SongsList = () => {
     }
 
     try {
-      await axios.put(`http://127.0.0.1:5000/music/update/${editingSong._id}`, editingSong, {
+      await axios.put(`https://face-detection-music-player-backend.onrender.com/music/update/${editingSong._id}`, editingSong, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

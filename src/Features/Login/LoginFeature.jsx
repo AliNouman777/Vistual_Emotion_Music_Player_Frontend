@@ -103,7 +103,7 @@ const LoginFeature = () => {
               disabled={loading}
               style={{
                 cursor: loading ? "not-allowed" : "pointer",
-                backgroundColor: loading ? "#ccc" : "#007bff",
+                background: loading ? "#ccc" : " ",
               }}
             >
               {loading ? "Logging in..." : "Login"}

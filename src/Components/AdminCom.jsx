@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import UserStatsChart from './UserStatsChart/UserStatsChart';
 import MusicStatsChart from './UserStatsChart/MusicStatsChart';  
+import "./Admin.css"
 
 const AdminCom = () => {
   const Navigate = useNavigate();
@@ -19,7 +20,7 @@ const AdminCom = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className='mainadmincon'>
       <AdminFeatures />
       <UserStatsChart />  {/* User registrations chart */}
       <MusicStatsChart />  {/* Music type distribution chart */}
