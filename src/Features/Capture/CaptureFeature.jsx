@@ -95,6 +95,23 @@ const CaptureFeature = () => {
     };
   }, [modelloaded]);
 
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * max);
+  };
+
+  const fetchYouTubeVideos = async (query) => {
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&key=AIzaSyAz_T4L-BAnuEnVwgPBI3mMQF2tPrS-vOE&maxResults=10`
+    );
+    const data = await response.json();
+
+    // Shuffle results and pick a random one
+    const shuffledVideos = data.items.sort(() => 0.5 - Math.random());
+    const selectedVideo = shuffledVideos[getRandomInt(shuffledVideos.length)];
+
+    return selectedVideo;
+  };
+
   const Capture = async () => {
     setButtonLoading(true); // Disable button and change text when clicked
     if (modelloaded && videref.current) {
@@ -134,9 +151,15 @@ const CaptureFeature = () => {
             singer: selectedSinger
           })
         )
-        .then((data) => {
+        .then(async (data) => {
           if (data && data.payload.data && data.payload.data[0]) {
-            Navigate("/player");
+            const emotion = data.payload.data[0].emotion; // Assuming `emotion` is in the returned data
+            const video = await fetchYouTubeVideos(`${emotion} song`);
+            if (video) {
+              Navigate("/player", { state: { videoId: video.id.videoId, videoSnippet: video.snippet } });
+            } else {
+              toast.info("Sorry: No music found for the detected mood.");
+            }
           } else {
             toast.info("Sorry: No music found for the detected mood.");
           }
@@ -171,7 +194,7 @@ const CaptureFeature = () => {
                   onChange={handleSingerChange}
                 >
                   <option value="">Any</option>
-                  {singers.map((item, index) => (
+                  {singers && singers.map((item, index) => (
                     <option key={index} value={item}>
                       {item}
                     </option>
