@@ -1,7 +1,8 @@
+/* Base styles */
 .wrapperEight {
-  font-size: 6rem; /* Adjust font size if it's too large */
+  font-size: 6rem; /* Default font size */
   background-color: #ffffff;
-  overflow: hidden; /* Change to visible if cutting off content */
+  overflow: hidden; /* Keep overflow hidden */
   position: relative;
   width: 100%;
   height: 100vh;
@@ -15,7 +16,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  white-space: nowrap; /* Add this to prevent wrapping */
+  white-space: nowrap; /* Prevent wrapping */
 }
 
 .spanSmoke {
@@ -51,5 +52,37 @@
     transform: translate3d(0, -2rem, 0) skewX(50deg);
     text-shadow: 0 0 20px rgb(239, 239, 145), 0 0 50px #ff0000; 
     opacity: 0;
+  }
+}
+
+/* Media Queries */
+
+/* For medium screens (up to 768px wide) */
+@media screen and (max-width: 768px) {
+  .wrapperEight {
+    font-size: 3rem; /* Adjust font size for medium screens */
+  }
+
+  .spanSmoke {
+    font-size: 2rem; /* Adjust span text size */
+  }
+
+  .emoji {
+    font-size: 2rem; /* Adjust emoji size */
+  }
+}
+
+/* For large screens (up to 992px wide) */
+@media screen and (max-width: 992px) {
+  .wrapperEight {
+    font-size: 4rem; /* Adjust font size for large screens */
+  }
+
+  .spanSmoke {
+    font-size: 3rem; /* Adjust span text size */
+  }
+
+  .emoji {
+    font-size: 3rem; /* Adjust emoji size */
   }
 }

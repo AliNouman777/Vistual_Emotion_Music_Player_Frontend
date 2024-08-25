@@ -29,7 +29,7 @@ const SongsList = () => {
 
       try {
         setLoadingSongs(true);
-        const response = await axios.get("http://127.0.0.1:5000/music/all", {
+        const response = await axios.get("https://face-detection-music-player-backend.onrender.com/music/all", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

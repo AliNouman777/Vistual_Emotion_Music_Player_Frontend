@@ -141,3 +141,20 @@ iframe {
     border-radius: 100%;
   }
 }
+
+.notfoundcon{
+  width: 100%;
+  height: 50vh;
+  font-size: x-large;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.notfoundtext{
+  margin: auto;
+  font-size: 2rem;
+  font-weight: bolder;
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./SongPlayer.css";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SongPlayer = () => {
   const music = useSelector((state) => state.music.music);
@@ -15,7 +15,9 @@ const SongPlayer = () => {
 
   const fetchYouTubeVideos = async (query) => {
     const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&key=AIzaSyAToXp1On3Vn6nccbt-Nm9L7dD7Ft1yySA&maxResults=5`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
+        query
+      )}&type=video&key=AIzaSyAToXp1On3Vn6nccbt-Nm9L7dD7Ft1yySA&maxResults=5`
     );
     const data = await response.json();
     setVideos(data.items);
@@ -77,37 +79,50 @@ const SongPlayer = () => {
                   </div>
                 </div>
 
-                <h2>Song Name : {selectedVideo ? videoDetails.title : music.title}</h2>
-                <h3>Artist Name : {selectedVideo ? videoDetails.channelTitle : music.singer}</h3>
-                <p>{selectedVideo ? videoDetails.description : music.description}</p>
+                <h2>
+                  Song Name : {selectedVideo ? videoDetails.title : music.title}
+                </h2>
+                <h3>
+                  Artist Name :{" "}
+                  {selectedVideo ? videoDetails.channelTitle : music.singer}
+                </h3>
+                <p>
+                  {selectedVideo ? videoDetails.description : music.description}
+                </p>
               </div>
             </div>
 
-            {videos && <div className="recommendations">
-              <h2>Recommended Songs</h2>
-              <div className="video-list">
-                {videos.map((video) => (
-                  <div
-                    key={video.id.videoId}
-                    className="video-thumbnail"
-                    onClick={() => handleVideoSelect(video.id.videoId, video.snippet)}
-                  >
-                    <img
-                      src={video.snippet.thumbnails.medium.url}
-                      alt={video.snippet.title}
-                      className="thumbnail"
-                    />
-                    <p>{video.snippet.title}</p>
-                  </div>
-                ))}
+            {videos && (
+              <div className="recommendations">
+                <h2>Recommended Songs</h2>
+                <div className="video-list">
+                  {videos.map((video) => (
+                    <div
+                      key={video.id.videoId}
+                      className="video-thumbnail"
+                      onClick={() =>
+                        handleVideoSelect(video.id.videoId, video.snippet)
+                      }
+                    >
+                      <img
+                        src={video.snippet.thumbnails.medium.url}
+                        alt={video.snippet.title}
+                        className="thumbnail"
+                      />
+                      <p>{video.snippet.title}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>}
+            )}
           </div>
         </div>
       ) : (
         <>
-          <div>Not Music found</div>
-          <Link to={"/"}>Home</Link>
+          <div className="notfoundcon">
+            <div className="notfoundtext">Not Music found</div>
+            <Link to={"/"}>Home</Link>
+          </div>
         </>
       )}
     </>
