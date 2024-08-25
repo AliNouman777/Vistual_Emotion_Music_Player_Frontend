@@ -48,9 +48,10 @@ iframe {
 }
 
 .textcon {
-  /* flex: 1 */
+  flex: 1;
   max-width: 300px;
   color: white;
+  margin-left: 1rem;
 }
 
 .circle-container {

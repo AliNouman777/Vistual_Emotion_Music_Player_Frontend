@@ -1,161 +1,146 @@
-.Capture {
+/* Container for the whole component */
+.capture-container {
   display: flex;
-  justify-content: space-around; /* Spacing between dropdown and video */
-  flex-direction: row;
+  flex-direction: column !important;
   align-items: center;
-  height: 90vh;
-  padding: 20px 40px; /* Increased padding for better spacing */
-  overflow: hidden;
-  font-size: large;
-  width: 80vw;
+  padding: 20px;
+  margin: auto;
+  width: 80%;
+}
+
+.dropdown-container {
+  display: flex;
+  flex-direction: row;
 }
 
 .dropdowns {
-  width: 100%;
-  max-width: 400px; /* Increased max width for larger screens */
-  margin: 0 20px; /* Increased margin for spacing */
-  padding: 30px; /* Increased padding for more whitespace */
-  background-color: #ffffff;
-  border-radius: 10px; /* Larger border radius */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added a subtle box shadow */
-  box-sizing: border-box;
+  margin: auto;
+  align-items: center;
 }
 
-.dropdowns div {
-  margin-bottom: 20px; /* Increased spacing between elements */
+/* Dropdowns and video are side by side on larger screens */
+@media (min-width: 768px) {
+  .capture-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .dropdowns {
+    margin-right: 20px;
+  }
+
+  .video-container {
+    margin-left: 20px;
+  }
 }
 
-label {
-  display: block;
-  margin-bottom: 8px; /* Slightly increased margin for better spacing */
-  color: #333333;
-  font-size: 18px; /* Increased font size */
+/* Stacked layout on mobile screens */
+@media (max-width: 480px) {
+  .dropdowns {
+    margin-bottom: 20px;
+  }
+
+  .video-container {
+    margin-top: 20px;
+  }
+
+  .dropdown-container{
+    margin-top: 4rem;
+    flex-direction: column;
+  }
+
+ 
+  
+  .dropdown select {
+    width: 200px !important;
+    font-size: 0.8rem !important;
+  }
+
+  
+}
+
+/* Styling the dropdown container */
+.dropdowns {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.dropdown label {
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
-select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #fff;
-  font-size: 16px; /* Increased font size */
-  color: #333333;
-  margin-bottom: 12px; /* Spacing after the select element */
+.dropdown select {
+  width: 400px;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1.5rem;
 }
 
-select:focus {
-  outline: none;
-  border-color: #314962;
-}
-
-.webcamcon {
+/* Video container */
+.video-container {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50vw; /* Increased width for larger video display */
-  max-width: 1200px; /* Increased max width for larger screens */
-  margin-top: 20px;
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.video {
+/* Video element */
+.video-element {
+  border-radius: 10px;
   width: 100%;
+  max-width: 1000px; /* Increased max-width */
   height: auto;
-  border-radius: 12px; /* Increased border radius */
 }
 
-.canvas {
+/* Landmark canvas over the video */
+.landmark-canvas {
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 10px;
   width: 100%;
+  max-width: 800px; /* Increased max-width to match video */
   height: auto;
-  border-radius: 12px;
-  z-index: 2;
 }
 
-.divbtn {
-  margin-top: 30px; /* Increased margin for better spacing */
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.cbtn {
-  width: 60%;
-  max-width: 350px; /* Increased max width for larger buttons */
-  text-align: center;
-  padding: 0.8rem; /* Increased padding */
-  background: linear-gradient(
-      45deg,
-      rgb(87, 87, 227),
-      rgb(184, 90, 90),
-      rgb(239, 239, 145)
-  );
-  color: white;
-  font-size: large; /* Increased font size */
-  font-weight: 700;
-  outline: none;
+/* Capture button */
+.capture-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff7f50;
+  color: #fff;
   border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  border-radius: 8px; /* Increased border radius */
+  transition: background-color 0.3s;
 }
 
-.cbtn:hover {
-  background-color: #007bff;
-  color: white;
-  transform: scale(1.05);
-  transition: 0.4s;
+.capture-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-.cbtn:active {
-  opacity: 0.8;
-  color: grey;
+.capture-button:hover:enabled {
+  background-color: #ff6347;
 }
 
-/* Responsive Styles */
-
-@media (max-width: 768px) {
-  .Capture {
-      flex-direction: column; /* Stack elements on smaller screens */
-      justify-content: center;
-      padding: 20px;
-  }
-
-  .webcamcon {
-      width: 100%;
-      max-width: 500px;
-      margin-top: 20px;
-  }
-
-  .divbtn {
-      margin-top: 20px;
-  }
-
-  .cbtn {
-      width: 80%; /* Increase button width on smaller screens */
-      max-width: 250px;
-  }
+/* Captured image display */
+.captured-image-container {
+  margin-top: 20px;
+  text-align: center;
 }
 
-@media (max-width: 480px) {
-  .label {
-      font-size: 16px; /* Adjusted font size for smaller screens */
-  }
-
-  .cbtn {
-      width: 90%;
-      max-width: 200px;
-      font-size: medium; /* Adjusted font size */
-  }
-
-  .dropdowns {
-      padding: 20px; /* Adjusted padding */
-  }
-
-  .video, .canvas {
-      max-width: 100%;
-      height: auto;
-  }
+.captured-image {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

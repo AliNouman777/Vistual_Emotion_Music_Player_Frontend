@@ -15,7 +15,7 @@ const SongPlayer = () => {
 
   const fetchYouTubeVideos = async (query) => {
     const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&key=AIzaSyAz_T4L-BAnuEnVwgPBI3mMQF2tPrS-vOE&maxResults=5`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&key=AIzaSyAToXp1On3Vn6nccbt-Nm9L7dD7Ft1yySA&maxResults=5`
     );
     const data = await response.json();
     setVideos(data.items);
@@ -83,8 +83,7 @@ const SongPlayer = () => {
               </div>
             </div>
 
-            {/* YouTube Recommendations Section */}
-            <div className="recommendations">
+            {videos && <div className="recommendations">
               <h2>Recommended Songs</h2>
               <div className="video-list">
                 {videos.map((video) => (
@@ -102,7 +101,7 @@ const SongPlayer = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div>}
           </div>
         </div>
       ) : (

@@ -9,8 +9,8 @@
     }
     .con{
         flex-direction: column;
-        justify-content: flex-start;
-        padding: 20px;
+        /* justify-content: flex-start;
+        padding: 20px; */
     }
     .aboutcon{
         flex-direction: column;
