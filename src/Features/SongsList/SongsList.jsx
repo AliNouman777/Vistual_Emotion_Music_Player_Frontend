@@ -57,7 +57,7 @@ const SongsList = () => {
 
     try {
       setDeletingSongIds((prev) => [...prev, SongId]);
-      await axios.delete(`http://127.0.0.1:5000/music/delete/${SongId}`, {
+      await axios.delete(`https://face-detection-music-player-backend.onrender.com/music/delete/${SongId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
