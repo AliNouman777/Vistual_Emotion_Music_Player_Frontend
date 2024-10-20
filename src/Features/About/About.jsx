@@ -31,7 +31,7 @@ const About = () => {
             </div>
             <div className="team-member">
               <img src={molvi_img} alt="Team Member 2" />
-              <h2>Molvi</h2>
+              <h2>Adnan</h2>
               <p>Designer </p>
             </div>
            

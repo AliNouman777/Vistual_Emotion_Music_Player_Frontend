@@ -1,11 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import BASE_URL from "../../BASE_URL";
+
 export const UserLogin = createAsyncThunk(
   "user/login",
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
-        "https://face-detection-music-player-backend.onrender.com/user/login",
+        `${BASE_URL}/user/login`,
         {
           email: user.email,
           password: user.password,
@@ -53,7 +55,7 @@ export const UserSignup = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
-        "https://face-detection-music-player-backend.onrender.com/user/register",
+        `${BASE_URL}/user/register`,
         user,
         {
           headers: {
@@ -114,7 +116,7 @@ export const UserProfile = createAsyncThunk(
     }
 
     try {
-      const { data } = await axios.get("https://face-detection-music-player-backend.onrender.com/user/profile", {
+      const { data } = await axios.get(`${BASE_URL}/user/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -150,7 +152,7 @@ export const UserLogout = createAsyncThunk(
       }
 
       const { data } = await axios.post(
-        "https://face-detection-music-player-backend.onrender.com/user/logout",
+        `${BASE_URL}/user/logout`,
         {},
         {
           headers: {

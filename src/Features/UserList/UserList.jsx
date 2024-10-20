@@ -5,6 +5,7 @@ import AdminFeaturesaside from "../AdminFeatures/AdminFeaturesaside";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from "../../Loader/Loader";
+import BASE_URL from '../../BASE_URL.js'
 
 const getToken = () => {
   const tokenData = JSON.parse(localStorage.getItem("token"));
@@ -29,7 +30,7 @@ const UserList = () => {
 
       try {
         setLoadingUsers(true);
-        const response = await axios.get("https://face-detection-music-player-backend.onrender.com/user/all", {
+        const response = await axios.get(`${BASE_URL}/user/all`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -57,7 +58,7 @@ const UserList = () => {
 
     try {
       setDeletingUserIds(prev => [...prev, userId]);
-      await axios.delete(`https://face-detection-music-player-backend.onrender.com/user/delete/${userId}`, {
+      await axios.delete(`${BASE_URL}/user/delete/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

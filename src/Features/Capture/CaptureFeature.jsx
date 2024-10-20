@@ -12,7 +12,6 @@ const CaptureFeature = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const videoRef = useRef(null);
-  const captureCanvasRef = useRef(null);
   const landmarkCanvasRef = useRef(null);
 
   // State management
@@ -35,7 +34,6 @@ const CaptureFeature = () => {
         await Promise.all([
           faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
           faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
-          faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
         ]);
         setModelLoaded(true);
       } catch (error) {
@@ -62,31 +60,6 @@ const CaptureFeature = () => {
 
     if (modelLoaded) {
       startVideo();
-
-      const interval = setInterval(async () => {
-        if (videoRef.current && landmarkCanvasRef.current) {
-          const options = new faceapi.TinyFaceDetectorOptions();
-          const detections = await faceapi
-            .detectAllFaces(videoRef.current, options)
-            .withFaceLandmarks();
-
-          if (detections.length > 0) {
-            const resizedDetections = faceapi.resizeResults(detections, {
-              width: videoRef.current.videoWidth,
-              height: videoRef.current.videoHeight,
-            });
-
-            landmarkCanvasRef.current.width = videoRef.current.videoWidth;
-            landmarkCanvasRef.current.height = videoRef.current.videoHeight;
-
-            const ctx = landmarkCanvasRef.current.getContext("2d");
-            ctx.clearRect(0, 0, landmarkCanvasRef.current.width, landmarkCanvasRef.current.height);
-            faceapi.draw.drawFaceLandmarks(landmarkCanvasRef.current, resizedDetections);
-          }
-        }
-      }, 100);
-
-      return () => clearInterval(interval);
     }
 
     return () => {
@@ -98,11 +71,43 @@ const CaptureFeature = () => {
     };
   }, [modelLoaded]);
 
+  // Detect faces and landmarks in real-time
+  useEffect(() => {
+    const detectFaceLandmarks = async () => {
+      if (videoRef.current && landmarkCanvasRef.current && videoRef.current.readyState === 4) {
+        const options = new faceapi.TinyFaceDetectorOptions();
+        const detections = await faceapi
+          .detectAllFaces(videoRef.current, options)
+          .withFaceLandmarks();
+
+        // Ensure canvas dimensions match the video
+        const displaySize = {
+          width: videoRef.current.videoWidth,
+          height: videoRef.current.videoHeight,
+        };
+        faceapi.matchDimensions(landmarkCanvasRef.current, displaySize);
+
+        // Clear canvas before drawing new detections
+        const resizedDetections = faceapi.resizeResults(detections, displaySize);
+        const ctx = landmarkCanvasRef.current.getContext("2d");
+        ctx.clearRect(0, 0, landmarkCanvasRef.current.width, landmarkCanvasRef.current.height);
+
+        // Draw face landmarks on the canvas
+        faceapi.draw.drawFaceLandmarks(landmarkCanvasRef.current, resizedDetections);
+      }
+    };
+
+    if (modelLoaded) {
+      const interval = setInterval(detectFaceLandmarks, 100);
+      return () => clearInterval(interval);
+    }
+  }, [modelLoaded]);
+
   // Capture image and send it to the backend
   const captureFace = async () => {
     setButtonLoading(true);
 
-    if (modelLoaded && videoRef.current && videoRef.current.readyState >= 2) {  // Ensure the video is ready
+    if (videoRef.current && videoRef.current.readyState >= 2) {
       const options = new faceapi.TinyFaceDetectorOptions();
       const detections = await faceapi
         .detectSingleFace(videoRef.current, options)
@@ -110,10 +115,12 @@ const CaptureFeature = () => {
 
       if (detections) {
         const face = detections.detection.box;
-        const canvas = captureCanvasRef.current;
+
+        // Dynamically create a canvas for image processing
+        const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
 
-        // Adjust canvas dimensions to match the video element
+        // Set canvas dimensions to match the video element
         canvas.width = videoRef.current.videoWidth;
         canvas.height = videoRef.current.videoHeight;
 
@@ -124,7 +131,6 @@ const CaptureFeature = () => {
         const imageData = ctx.getImageData(face.x, face.y, face.width, face.height);
 
         // Clear the canvas and adjust its dimensions to the face size
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         canvas.width = face.width;
         canvas.height = face.height;
 
@@ -166,50 +172,48 @@ const CaptureFeature = () => {
     }
   };
 
+  if (!modelLoaded) {
+    return <Loader />;
+  }
+
   return (
-    <>
-      {!modelLoaded ? (
-        <Loader />
-      ) : (
-        <div className="capture-container">
-          <div className="dropdown-container">
-            <div className="dropdowns">
-              <label className="singerlab" htmlFor="singers-dropdown">Choose a singer:</label>
-              <div className="dropdown">
-                <select id="singers-dropdown" value={selectedSinger} onChange={handleSingerChange}>
-                  <option value="">Any</option>
-                  {singers &&
-                    singers.map((item, index) => (
-                      <option key={index} value={item}>
-                        {item}
-                      </option>
-                    ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="video-container">
-              <video ref={videoRef} autoPlay playsInline muted className="video-element" />
-              <canvas ref={landmarkCanvasRef} className="landmark-canvas" />
-              <canvas ref={captureCanvasRef} className="capture-canvas" style={{ display: "none" }} />
-            </div>
+    <div className="capture-container">
+      <div className="dropdown-container">
+        <div className="dropdowns">
+          <label className="singerlab" htmlFor="singers-dropdown">Choose a singer:</label>
+          <div className="dropdown">
+            <select id="singers-dropdown" value={selectedSinger} onChange={handleSingerChange}>
+              <option value="">Any</option>
+              {singers &&
+                singers.map((item, index) => (
+                  <option key={index} value={item}>
+                    {item}
+                  </option>
+                ))}
+            </select>
           </div>
+        </div>
 
-          <button className="capture-button" onClick={captureFace} disabled={buttonLoading}>
-            {buttonLoading ? "Please wait..." : "Suggest Song"}
-          </button>
+        <div className="video-container">
+          <video ref={videoRef} autoPlay playsInline muted className="video-element" />
+          <canvas ref={landmarkCanvasRef} className="landmark-canvas" />
+        </div>
+      </div>
 
-          {capturedImage && (
-            <div className="captured-image-container">
-              <h3>Captured Image:</h3>
-              <img src={capturedImage} alt="Captured Face" className="captured-image" />
-            </div>
-          )}
-          <ToastContainer />
+      <button className="capture-button" onClick={captureFace} disabled={buttonLoading}>
+        {buttonLoading ? "Please wait..." : "Suggest Song"}
+      </button>
+
+      {capturedImage && (
+        <div className="captured-image-container">
+          <h3>Captured Image:</h3>
+          <img src={capturedImage} alt="Captured Face" className="captured-image" />
         </div>
       )}
-    </>
+      <ToastContainer />
+    </div>
   );
 };
 
 export default CaptureFeature;
+

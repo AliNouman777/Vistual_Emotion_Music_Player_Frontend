@@ -51,7 +51,7 @@ iframe {
   flex: 1;
   max-width: 300px;
   color: white;
-  margin-left: 1rem;
+  margin-left: 7rem;
 }
 
 .circle-container {
@@ -112,6 +112,18 @@ iframe {
   transform: scale(1.05);
 }
 
+.m-font{
+  font-size: medium;
+}
+
+.s-font{
+font-size: small;
+}
+
+.x-font{
+  font-size: small;
+}
+
 .thumbnail {
   width: 100%;
   height: auto;
@@ -121,7 +133,7 @@ iframe {
 
 
 .video-thumbnail p {
-  margin: 0.5rem 0;
+  margin: 0.1rem 0;
   color: white;
   font-size: 0.9rem;
 }

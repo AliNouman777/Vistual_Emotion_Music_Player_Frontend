@@ -4,7 +4,9 @@ import "./SongList.css";
 import AdminFeaturesaside from "../AdminFeatures/AdminFeaturesaside";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import Loader from "../../Loader/Loader"
+import Loader from "../../Loader/Loader";
+import BASE_URL from "../../BASE_URL";
+
 const getToken = () => {
   const tokenData = JSON.parse(localStorage.getItem("token"));
   return tokenData ? tokenData.value : null;
@@ -29,7 +31,7 @@ const SongsList = () => {
 
       try {
         setLoadingSongs(true);
-        const response = await axios.get("https://face-detection-music-player-backend.onrender.com/music/all", {
+        const response = await axios.get(`${BASE_URL}/music/all`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -57,7 +59,7 @@ const SongsList = () => {
 
     try {
       setDeletingSongIds((prev) => [...prev, SongId]);
-      await axios.delete(`https://face-detection-music-player-backend.onrender.com/music/delete/${SongId}`, {
+      await axios.delete(`${BASE_URL}/music/delete/${SongId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -99,7 +101,7 @@ const SongsList = () => {
     }
 
     try {
-      await axios.put(`https://face-detection-music-player-backend.onrender.com/music/update/${editingSong._id}`, editingSong, {
+      await axios.put(`${BASE_URL}/music/update/${editingSong._id}`, editingSong, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -151,7 +153,7 @@ const SongsList = () => {
                 onChange={handleEditChange}
               />
             </div>
-            <div className="form-group">
+            <div className="form-group description-column">
               <label>Description</label>
               <textarea
                 name="description"
@@ -174,9 +176,8 @@ const SongsList = () => {
       )}
       <div className="Song-table-container">
         <h2>Song List</h2>
-        {Songs.length === 0 ? (
-          // <p>No Songs found.</p>
-          <Loader/>
+        {loadingSongs ? (
+          <Loader />
         ) : (
           <table className="Song-table">
             <thead>
@@ -184,7 +185,7 @@ const SongsList = () => {
                 <th>Title</th>
                 <th>Singer</th>
                 <th>Type</th>
-                <th>Description</th>
+                <th className="description-column">Description</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -196,7 +197,7 @@ const SongsList = () => {
                     <td>{Song.title}</td>
                     <td>{Song.singer}</td>
                     <td>{Song.type}</td>
-                    <td>{Song.description}</td>
+                    <td className="description-column">{Song.description}</td>
                     <td>
                       <button
                         className="delete-button"

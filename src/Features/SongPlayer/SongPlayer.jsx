@@ -25,7 +25,7 @@ const SongPlayer = () => {
 
   useEffect(() => {
     if (music) {
-      fetchYouTubeVideos(`${music.type} song`);
+      fetchYouTubeVideos(`${music.type} mood songs from bollywood and holywood`);
     }
   }, [music]);
 
@@ -79,15 +79,15 @@ const SongPlayer = () => {
                   </div>
                 </div>
 
-                <h2>
+                <h2 className="m-font">
                   Song Name : {selectedVideo ? videoDetails.title : music.title}
                 </h2>
-                <h3>
+                <h3 className="s-font">
                   Artist Name :{" "}
                   {selectedVideo ? videoDetails.channelTitle : music.singer}
                 </h3>
-                <p>
-                  {selectedVideo ? videoDetails.description : music.description}
+                <p className="x-font">
+                  {selectedVideo ? videoDetails.description.length > 100? `${videoDetails.description.slice(0, 100)} ...`:videoDetails.description : music.description.length > 100 ? `${music.description.slice(0,100)}...` : music.description}
                 </p>
               </div>
             </div>
