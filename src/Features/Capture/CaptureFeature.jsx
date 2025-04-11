@@ -48,13 +48,44 @@ const CaptureFeature = () => {
   useEffect(() => {
     const startVideo = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+        const constraints = {
+          video: {
+            facingMode: "user",
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
+          }
+        };
+        
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        
+        if (videoDevices.length === 0) {
+          throw new Error('No video devices found');
+        }
+    
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
       } catch (error) {
-        console.error("Error accessing the camera", error);
-        toast.error("Error accessing the camera");
+        console.error("Camera error:", error);
+        let errorMessage = "Camera access error: ";
+        
+        switch (error.name) {
+          case 'NotAllowedError':
+            errorMessage += 'Please allow camera access in your browser settings';
+            break;
+          case 'NotFoundError':
+            errorMessage += 'No camera device found';
+            break;
+          case 'NotReadableError':
+            errorMessage += 'Camera is already in use by another application';
+            break;
+          default:
+            errorMessage += 'Cannot access camera device';
+        }
+        
+        toast.error(errorMessage);
       }
     };
 

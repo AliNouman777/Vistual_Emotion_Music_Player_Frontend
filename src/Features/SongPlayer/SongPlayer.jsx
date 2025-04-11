@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./SongPlayer.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import MP from "/mp.png"
 
 const SongPlayer = () => {
   const music = useSelector((state) => state.music.music);
